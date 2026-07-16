@@ -23,7 +23,7 @@ ext["timestamp"] = System.currentTimeMillis().toString()
 ext["git_branch"] = VersionUtil.getGitBranch(project, true)
 ext["git_commit"] = VersionUtil.getGitCommitHash(project, true)
 ext["git_org"] = System.getenv("GRIM_GIT_ORG") ?: VersionUtil.getGitUser(project)
-ext["git_repo"] = System.getenv("GRIM_GIT_REPO") ?: "Grim"
+ext["git_repo"] = System.getenv("GRIM_GIT_REPO") ?: "Monolith"
 
 println("Build configuration:")
 println("    shadePE            = ${BuildConfig.shadePE}")
