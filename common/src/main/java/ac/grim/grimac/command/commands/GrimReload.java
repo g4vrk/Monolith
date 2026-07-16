@@ -14,7 +14,7 @@ public class GrimReload implements BuildableCommand {
     @Override
     public void register(CommandManager<Sender> commandManager, CloudPlatformCommandArguments arguments) {
         commandManager.command(
-                commandManager.commandBuilder("grim", "grimac")
+                commandManager.commandBuilder("grim", "grimac", "monolith")
                         .literal("reload")
                         .permission("grim.reload")
                         .handler(this::handleReload)

@@ -83,7 +83,7 @@ public class GrimHistory implements BuildableCommand {
         SuggestionProvider<Sender> targetSuggestions = targetSuggestions(arguments);
 
         commandManager.command(
-                commandManager.commandBuilder("grim", "grimac")
+                commandManager.commandBuilder("grim", "grimac", "monolith")
                         .literal("history", "hist")
                         .literal("repair")
                         .literal("check-ids")

@@ -1,5 +1,5 @@
 <div align="center">
- <h1>GrimAC</h1>
+ <h1>Monolith</h1>
 
  <div>
   <a href="https://github.com/GrimAnticheat/Grim/actions/workflows/gradle-publish.yml">
@@ -18,7 +18,7 @@
  <br>
 </div>
 
-GrimAC is an open source Minecraft anticheat designed to support the latest versions of Minecraft.
+Monolith is an open source Minecraft anticheat designed to support the latest versions of Minecraft.
 It currently supports minecraft versions 1.8–26.2. Geyser players are fully exempt from the anticheat to prevent false positives.
 This project is considered feature-complete for the 2.0 (open-source) branch. If you would like a bug fix or enhancement and cannot sponsor the work, pull requests are welcome.
 A premium version is planned, which will offer additional subscription-based paid checks, such as heuristics.
@@ -62,12 +62,12 @@ information.
 
 ## Compiling From Source
 
-1. `git clone https://github.com/Axionize/LightningGrim`
-2. `cd LightningGrim`
+1. `git clone https://github.com/g4vrk/Monolith`
+2. `cd Monolith`
 3. `./gradlew build`
 4. The final jars will compile into the `<platform>/build/libs` folders
 
-## Grim Supremacy
+## Monolith Supremacy
 
 What makes Grim stand out against other anticheats?
 

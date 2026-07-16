@@ -20,7 +20,7 @@ public class GrimSpectate implements BuildableCommand {
     @Override
     public void register(CommandManager<Sender> commandManager, CloudPlatformCommandArguments arguments) {
         commandManager.command(
-                commandManager.commandBuilder("grim", "grimac")
+                commandManager.commandBuilder("grim", "grimac", "monolith")
                         .literal("spectate")
                         .permission("grim.spectate")
                         .required("target", arguments.singlePlayerSelectorParser())
