@@ -25,6 +25,7 @@ import ac.grim.grimac.predictionengine.UncertaintyHandler;
 import ac.grim.grimac.manager.AttackCooldownHandler;
 import ac.grim.grimac.predictionengine.blockeffects.CompensatedGeysers;
 import ac.grim.grimac.predictionengine.blockeffects.PotentSulfurGeyser;
+import ac.grim.grimac.utils.data.HeuristicData;
 import ac.grim.grimac.utils.anticheat.LogUtil;
 import ac.grim.grimac.utils.anticheat.MessageUtil;
 import ac.grim.grimac.utils.anticheat.update.BlockBreak;
@@ -40,10 +41,7 @@ import ac.grim.grimac.utils.enums.FluidTag;
 import ac.grim.grimac.utils.enums.Pose;
 import ac.grim.grimac.utils.inventory.InventoryDesyncStatus;
 import ac.grim.grimac.utils.latency.*;
-import ac.grim.grimac.utils.math.GrimMath;
-import ac.grim.grimac.utils.math.Location;
-import ac.grim.grimac.utils.math.TrigHandler;
-import ac.grim.grimac.utils.math.Vector3dm;
+import ac.grim.grimac.utils.math.*;
 import ac.grim.grimac.utils.nmsutil.BlockProperties;
 import ac.grim.grimac.utils.nmsutil.Collisions;
 import ac.grim.grimac.utils.nmsutil.GetBoundingBox;
@@ -292,6 +290,11 @@ public class GrimPlayer implements GrimUser {
     public EntityFluidInteraction fluidInteraction = new EntityFluidInteraction(FluidTag.WATER, FluidTag.LAVA);
     public boolean canFloatWhileRidden = false;
 
+    // Monolith stuff
+    public final ActionState actionState = new ActionState();
+    public final HeuristicData heuristicData = new HeuristicData();
+    // end
+
     public GrimPlayer(@NotNull User user) {
         this.user = user;
         this.uuid = user.getUUID();
@@ -331,6 +334,18 @@ public class GrimPlayer implements GrimUser {
         // reload last
         reload();
     }
+
+    // Monolith methods
+
+    public boolean attackedSince(int ticks) {
+        return actionState.ticksSinceAttack <= ticks;
+    }
+
+    public double horizontalMoveDistance() {
+        return MonolithMath.distXZ(lastX, x, lastZ, z);
+    }
+
+    // end
 
     public void onPacketCancel() {
         if (spamThreshold != -1 && cancelledPackets.incrementAndGet() > spamThreshold) {
@@ -454,7 +469,6 @@ public class GrimPlayer implements GrimUser {
         // Were we the ones who sent the packet?
         return data != null;
     }
-
     public void baseTickAddWaterPushing(Vector3dm vector) {
         baseTickWaterPushing.add(vector);
     }
