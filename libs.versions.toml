@@ -19,6 +19,7 @@ viaversion = "5.9.0"
 luckperms = "5.5"
 
 # --- General Java Utilities ---
+guava = "33.4.8-jre"
 fastutil = "8.5.15"
 hikaricp = "7.0.2"
 jetbrains-annotations = "24.1.0"
@@ -66,6 +67,7 @@ viaversion = { group = "com.viaversion", name = "viaversion", version.ref = "via
 viabackwards = { group = "com.viaversion", name = "viabackwards", version.ref = "viaversion" }
 
 # --- General Java Utilities ---
+guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
 fastutil = { group = "it.unimi.dsi", name = "fastutil", version.ref = "fastutil"}
 hikaricp = { group = "com.zaxxer", name = "HikariCP", version.ref = "hikaricp" }
 jetbrains-annotations = { group = "org.jetbrains", name = "annotations", version.ref = "jetbrains-annotations" }
