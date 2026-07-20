@@ -721,6 +721,9 @@ public class CheckManagerListener extends PacketListenerAbstract {
             float deltaYRot = player.pitch - player.lastPitch;
 
             final RotationUpdate update = new RotationUpdate(new HeadRotation(player.lastYaw, player.lastPitch), new HeadRotation(player.yaw, player.pitch), deltaXRot, deltaYRot);
+
+            player.heuristicData.onRotationTick(yaw, pitch); // Monolith
+
             player.checkManager.onRotationUpdate(update);
         }
 
