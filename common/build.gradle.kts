@@ -34,17 +34,15 @@ repositories {
         includeGroup("github.scarsz")
     }
 
-    // Cumulus
-    exclusive("https://repo.opencollab.dev/maven-releases/", { mavenContent { releasesOnly() } }) {
-        includeGroup("org.geysermc.api")
+    // Geyser / Floodgate
+    maven {
+        name = "opencollab"
+        url = uri("https://repo.opencollab.dev/maven-snapshots/")
     }
 
-    // Floodgate
-    exclusive("https://repo.opencollab.dev/maven-snapshots/", { mavenContent { snapshotsOnly() } }) {
-        includeGroup("org.geysermc.floodgate")
-        includeGroup("org.geysermc.cumulus")
-        includeModule("org.geysermc", "common")
-        includeModule("org.geysermc", "geyser-parent")
+    maven {
+        name = "opencollab-releases"
+        url = uri("https://repo.opencollab.dev/maven-releases/")
     }
 
     mavenCentral()
@@ -75,8 +73,9 @@ dependencies {
     compileOnly(libs.mongoDriverSync)
 
     compileOnly(libs.geyser.base.api) {
-        isTransitive = false // messes with guava otherwise
+        //isTransitive = false // messes with guava otherwise
     }
+    compileOnly(libs.guava)
 
     compileOnly(libs.floodgate.api)
     compileOnly(libs.viaversion)
