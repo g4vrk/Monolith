@@ -27,6 +27,20 @@ public class AimProcessor extends Check implements RotationCheck {
         super(playerData);
     }
 
+    public static double clamp180(double value) {
+        value %= 360.0;
+
+        if (value >= 180.0) {
+            value -= 360.0;
+        }
+
+        if (value < -180.0) {
+            value += 360.0;
+        }
+
+        return value;
+    }
+
     public static double convertToSensitivity(double var13) {
         double var11 = var13 / 0.15F / 8.0D;
         double var9 = Math.cbrt(var11);
