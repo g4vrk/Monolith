@@ -15,23 +15,33 @@ public class MonolithMath {
 
     private static final float EPSILON = 1E-4F;
 
-    public double getGcd(
+    public double gcd(
             final double a,
             final double b
     ) {
+        return gcd(a, b, EPSILON);
+    }
 
-        if (a < b) {
-
-            return getGcd(b, a);
-
-        } else {
-
-            return Math.abs(b) < 0.001D
-                    ? a
-                    : getGcd(b, a - Math.floor(a / b) * b);
-
+    public double gcd(
+            final double a,
+            final double b,
+            final double epsilon
+    ) {
+        if (b <= epsilon) {
+            return a;
         }
 
+        double remainder = a % b;
+
+        if (remainder < 0.0D) {
+            remainder += b;
+        }
+
+        if (Math.abs(remainder) <= epsilon) {
+            remainder = 0.0D;
+        }
+
+        return gcd(b, remainder, epsilon);
     }
 
     public int getMode(

@@ -233,7 +233,7 @@ public final class HeuristicData {
                 || deltaPitch >= MAX_PITCH_DELTA) return;
 
         final double gcd =
-                MonolithMath.getGcd(
+                MonolithMath.gcd(
                         deltaPitch,
                         lastDeltaPitch
                 );
