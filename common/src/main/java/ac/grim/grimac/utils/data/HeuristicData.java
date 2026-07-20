@@ -182,7 +182,7 @@ public final class HeuristicData {
     ) {
 
         yawSmoothness = Math.max(
-                0,
+                -10.0f,
                 YAW_SMOOTHNESS_BASE -
                         Math.abs(
                                 yawAcceleration - lastYawAcceleration
@@ -190,7 +190,7 @@ public final class HeuristicData {
         );
 
         pitchSmoothness = Math.max(
-                0,
+                -10.0f,
                 PITCH_SMOOTHNESS_BASE -
                         Math.abs(
                                 pitchAcceleration - lastPitchAcceleration
