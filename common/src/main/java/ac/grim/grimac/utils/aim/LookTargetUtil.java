@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @UtilityClass
-public class LookTargetUtils {
+public class LookTargetUtil {
 
     private static final double DEFAULT_MAX_DISTANCE = 6.0D;
 
