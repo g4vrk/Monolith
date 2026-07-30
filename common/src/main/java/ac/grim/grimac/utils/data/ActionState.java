@@ -30,7 +30,6 @@ public final class ActionState {
 
     public void onTick() {
 
-        ++this.flyingPacketsSinceAttack;
         ++this.ticksSinceAttack;
         ++this.ticksSinceBlockPlace;
 
