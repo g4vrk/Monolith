@@ -98,26 +98,32 @@ public class SetbackTeleportUtil extends Check implements PostPredictionCheck {
         if (player.gamemode == GameMode.SPECTATOR || player.disableGrim)
             return; // We don't care about spectators, they don't flag
         if (lastKnownGoodPosition == null) return; // Player hasn't spawned yet
-        blockMovementsUntilResync(true, true);
+        blockMovementsUntilResync(true, true, false);
     }
 
     public void executeNonSimulatingForceResync() {
         if (player.gamemode == GameMode.SPECTATOR || player.disableGrim)
             return; // We don't care about spectators, they don't flag
         if (lastKnownGoodPosition == null) return; // Player hasn't spawned yet
-        blockMovementsUntilResync(false, true);
+        blockMovementsUntilResync(false, true, false);
     }
 
     public void executeNonSimulatingSetback() {
         if (player.gamemode == GameMode.SPECTATOR || player.disableGrim)
             return; // We don't care about spectators, they don't flag
         if (lastKnownGoodPosition == null) return; // Player hasn't spawned yet
-        blockMovementsUntilResync(false, false);
+        blockMovementsUntilResync(false, false, false);
     }
 
     public boolean executeViolationSetback() {
         if (isExempt()) return false;
-        blockMovementsUntilResync(true, false);
+        blockMovementsUntilResync(true, false, false);
+        return true;
+    }
+
+    public boolean executeViolationSetbackDown() {
+        if (isExempt()) return false;
+        blockMovementsUntilResync(true, false,true);
         return true;
     }
 
@@ -154,7 +160,7 @@ public class SetbackTeleportUtil extends Check implements PostPredictionCheck {
         new PredictionEngine().applyMovementThreshold(player, new HashSet<>(Collections.singletonList(new VectorData(vector, VectorData.VectorType.BestVelPicked))));
     }
 
-    private void blockMovementsUntilResync(boolean simulateNextTickPosition, boolean isResync) {
+    private void blockMovementsUntilResync(boolean simulateNextTickPosition, boolean isResync, boolean isDown) {
         if (requiredSetBack == null) return; // Hasn't spawned
         if (player.platformPlayer != null && player.noSetbackPermission)
             return; // The player has permission to cheat
@@ -191,7 +197,12 @@ public class SetbackTeleportUtil extends Check implements PostPredictionCheck {
 
         // Mini prediction engine - simulate collisions
         if (simulateNextTickPosition) {
-            Vector3dm collide = Collisions.collide(player, clientVel.getX(), clientVel.getY(), clientVel.getZ());
+            Vector3dm collide = Collisions.collide(
+                    player,
+                    isDown ? 0.000000001 : clientVel.getX(),
+                    isDown ? -7.0 : clientVel.getY(),
+                    isDown ? 0.000000001 :clientVel.getZ()
+            );
 
             position = position.withX(position.getX() + collide.getX());
             position = position.withY(position.getY() + collide.getY());
